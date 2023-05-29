@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Rave.Views.RavesView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+    xmlns:controls="clr-namespace:Rave.Controls"
+    xmlns:local="clr-namespace:Rave.ViewModels"
+    xmlns:model="clr-namespace:Rave.Models"
+    xmlns:services="clr-namespace:Rave.Services"
+    xmlns:sync="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    Background="white"
+    NavigationPage.HasNavigationBar="False">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <services:StringToListConverter x:Key="StringToListConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <StackLayout Margin="0" Padding="0">
+            <RefreshView
+                Margin="{x:OnPlatform UWP='10,0,10,0',
+                                      iOS=30,
+                                      Android=10}"
+                x:DataType="local:RavesViewModel"
+                Command="{Binding LoadItemsCommand}"
+                IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                <CollectionView
+                    x:Name="ItemsListView"
+                    Margin="0"
+                    ItemsSource="{Binding Raves}"
+                    SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <StackLayout
+                                Margin="0"
+                                Padding="10,0,10,0"
+                                x:DataType="model:Raves">
+                                <Label
+                                    x:Name="StablishID"
+                                    x:FieldModifier="prueba"
+                                    AutomationId="prueba"
+                                    IsVisible="False"
+                                    Text="{Binding Id}" />
+
+                                <Frame
+                                    Margin="0"
+                                    Padding="0"
+                                    CornerRadius="30">
+                                    <StackLayout>
+                                        <Frame
+                                            Margin="0"
+                                            Padding="0"
+                                            CornerRadius="30"
+                                            HeightRequest="300">
+                                            <Image
+                                                Margin="0"
+                                                Aspect="AspectFill"
+                                                Source="{Binding Image.Source}" />
+                                        </Frame>
+                                    </StackLayout>
+                                </Frame>
+
+                                <Grid x:Name="header">
+                                    <Label
+                                        Margin="10,0,0,0"
+                                        FontFamily="GothamBold"
+                                        FontSize="20"
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        Text="{Binding Name}" />
+
+                                </Grid>
+                                <CollectionView
+                                    x:Name="ItemsListView"
+                                    Margin="0,0,0,30"
+                                    HeightRequest="55"
+                                    ItemsSource="{Binding Categories, Converter={StaticResource StringToListConverter}}"
+                                    SelectionMode="None">
+                                    <CollectionView.ItemsLayout>
+                                        <GridItemsLayout Orientation="Vertical" Span="8" />
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="x:String">
+                                            <sync:SfButton
+                                                Margin="0"
+                                                Padding="0"
+                                                BackgroundColor="gray"
+                                                CornerRadius="20"
+                                                FontAttributes="Bold"
+                                                FontSize="10"
+                                                HeightRequest="44"
+                                                HorizontalOptions="Start"
+                                                Text="{Binding}"
+                                                TextColor="Black"
+                                                VerticalOptions="Center" />
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:RavesViewModel}}, Path=ItemTapped}"
+                                        CommandParameter="{Binding}"
+                                        NumberOfTapsRequired="1" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

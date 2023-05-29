@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Rave.Views.StablishView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+    xmlns:controls="clr-namespace:Rave.Controls"
+    xmlns:local="clr-namespace:Rave.ViewModels"
+    xmlns:model="clr-namespace:Rave.Models"
+    xmlns:services="clr-namespace:Rave.Services"
+    xmlns:sync="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    Background="white"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <services:StringToListConverter x:Key="StringToListConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+        <StackLayout>
+
+            <RefreshView
+                Margin="{x:OnPlatform UWP=10,
+                                      iOS=30,
+                                      Android=10}"
+                x:DataType="local:ItemsViewModel"
+                Command="{Binding LoadItemsCommand}"
+                IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                <CollectionView
+                    x:Name="ItemsListView"
+                    Margin="0"
+                    ItemsSource="{Binding Stablishments}"
+                    SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10,20,10,0" x:DataType="model:Stablishment">
+                                <Label
+                                    x:Name="StablishID"
+                                    x:FieldModifier="prueba"
+                                    AutomationId="prueba"
+                                    IsVisible="False"
+                                    Text="{Binding Id}" />
+
+                                <Frame
+                                    Margin="0"
+                                    Padding="0"
+                                    CornerRadius="30">
+                                    <StackLayout>
+                                        <Frame
+                                            Margin="0"
+                                            Padding="0"
+                                            CornerRadius="30"
+                                            HeightRequest="300">
+                                            <Image
+                                                Margin="0"
+                                                Aspect="AspectFill"
+                                                Source="{Binding ProfileImage.Source}" />
+                                        </Frame>
+                                    </StackLayout>
+                                </Frame>
+
+                                <Grid x:Name="header">
+                                    <Label
+                                        FontFamily="GothamBold"
+                                        FontSize="20"
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        Text="{Binding Name}" />
+                                    <ImageButton
+                                        Margin="0,0,50,0"
+                                        BackgroundColor="Transparent"
+                                        HeightRequest="30"
+                                        HorizontalOptions="End"
+                                        Source="share.png"
+                                        WidthRequest="30" />
+                                    <ImageButton
+                                        x:Name="FavoriteButton"
+                                        Margin="0,0,10,0"
+                                        x:FieldModifier="public"
+                                        BackgroundColor="Transparent"
+                                        Clicked="FavoriteBton1_Clicked"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=FavoriteTapped}"
+                                        CommandParameter="{Binding .}"
+                                        HeightRequest="30"
+                                        HorizontalOptions="End"
+                                        Source="{Binding FavoriteSource}"
+                                        WidthRequest="30" />
+                                </Grid>
+                                <CollectionView
+                                    x:Name="ItemsListView"
+                                    HeightRequest="60"
+                                    ItemsSource="{Binding Categories, Converter={StaticResource StringToListConverter}}"
+                                    SelectionMode="None">
+                                    <CollectionView.ItemsLayout>
+                                        <GridItemsLayout Orientation="Vertical" Span="8" />
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="x:String">
+                                            <sync:SfButton
+                                                Padding="0"
+                                                BackgroundColor="gray"
+                                                CornerRadius="20"
+                                                FontAttributes="Bold"
+                                                FontSize="10"
+                                                HeightRequest="44"
+                                                HorizontalOptions="Start"
+                                                Text="{Binding}"
+                                                TextColor="Black"
+                                                VerticalOptions="Center" />
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"
+                                        CommandParameter="{Binding}"
+                                        NumberOfTapsRequired="1" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

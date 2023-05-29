@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rave.Controls.CategoriesPicker"
+              xmlns:local="clr-namespace:Rave.ViewModels"  
+             xmlns:model="clr-namespace:Rave.Models"  
+             xmlns:controls="clr-namespace:Rave.Controls"
+             >
+  <ContentView.Content>
+      <StackLayout>
+            <Frame  Grid.Row="7" Margin="0" Padding="0" CornerRadius="10">
+
+                <RefreshView x:DataType="local:CategoriesViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                    <StackLayout  Background="{StaticResource Primary}"  >
+                        <ListView  Margin="20" ItemsSource="{Binding Categories}" HeightRequest="100">
+                            <ListView.ItemTemplate  >
+                                <DataTemplate>
+                                    <ViewCell x:DataType="model:Category">
+                                        <Grid Margin="10,0,0,10" >
+                                            <Label Text="{Binding Name}" TextColor="white" VerticalOptions="Center"/>
+                                            <Switch HorizontalOptions="End" Visual="Material" x:Name="{Binding Id}" Toggled="SwitchToggled" AutomationId="{Binding Name}"/>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </RefreshView>
+            </Frame>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

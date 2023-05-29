@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Rave.Views.ItemsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+    xmlns:controls="clr-namespace:Rave.Controls"
+    xmlns:local="clr-namespace:Rave.ViewModels"
+    xmlns:model="clr-namespace:Rave.Models"
+    xmlns:services="clr-namespace:Rave.Services"
+    xmlns:sync="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    x:Name="BrowseItemsPage"
+    Background="white"
+    FlowDirection="LeftToRight"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <services:StringToListConverter x:Key="StringToListConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout x:DataType="local:CategoriesViewModel">
+            <StackLayout>
+                <Frame
+                    Margin="10,10,10,0"
+                    Background="{StaticResource Primary}"
+                    CornerRadius="{x:OnPlatform UWP=20,
+                                                iOS=30,
+                                                Android=30}">
+                    <FlexLayout HeightRequest="{x:OnPlatform UWP=45, iOS=55, Android=50}">
+                        <Frame
+                            Padding="5"
+                            Background="transparent"
+                            HorizontalOptions="StartAndExpand">
+                            <SearchBar
+                                Background="{StaticResource Primary}"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Busca la fiesta"
+                                PlaceholderColor="White"
+                                TextChanged="SearchBar_TextChanged"
+                                TextColor="White"
+                                VerticalOptions="CenterAndExpand" />
+                        </Frame>
+                        <ImageButton
+                            x:Name="filterButton"
+                            Margin="0"
+                            BackgroundColor="Transparent"
+                            Clicked="filterButton_Clicked"
+                            Source="filterIcon.png"
+                            VerticalOptions="Center"
+                            WidthRequest="50" />
+                    </FlexLayout>
+                </Frame>
+                <Frame
+                    x:Name="FilterFrame"
+                    Margin="20,0,20,0"
+                    Padding="0"
+                    CornerRadius="20"
+                    IsVisible="False">
+                    <RefreshView
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="LightGray"
+                        Command="{Binding LoadItemsCommand}"
+                        IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+
+                        <combobox:SfComboBox
+                            x:Name="FilterComboBox"
+                            Margin="10,0,10,0"
+                            DataSource="{Binding Categories}"
+                            DisplayMemberPath="Name"
+                            HeightRequest="60"
+                            IsSelectedItemsVisibleInDropDown="false"
+                            MultiSelectMode="Token"
+                            SelectionChanged="SfComboBox_SelectionChanged" />
+                    </RefreshView>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Padding="20,0,20,0" HorizontalOptions="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <sync:SfButton
+                        x:Name="stablishbutton"
+                        Grid.Column="0"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="Silver"
+                        BorderThickness="0"
+                        Clicked="stablishbutton_Clicked"
+                        CornerRadius="10"
+                        FontSize="20"
+                        HeightRequest="10"
+                        Text="OFICIALES"
+                        TextColor="Black" />
+
+                    <sync:SfButton
+                        x:Name="ravesbutton"
+                        Grid.Column="1"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="Silver"
+                        BorderThickness="0"
+                        Clicked="ravesbutton_Clicked"
+                        CornerRadius="10"
+                        FontSize="20"
+                        HeightRequest="10"
+                        Text="RAVES"
+                        TextColor="Black" />
+                </Grid>
+                <Frame
+                    x:Name="tabFrame"
+                    Margin="0"
+                    Padding="0"
+                    BackgroundColor="Transparent" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

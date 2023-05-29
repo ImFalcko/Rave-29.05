@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Rave.Views.FavoritesPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Rave.Controls"
+    xmlns:local="clr-namespace:Rave.ViewModels"
+    xmlns:model="clr-namespace:Rave.Models"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="FavoritesItemsPage"
+    Background="white"
+    FlowDirection="LeftToRight"
+    NavigationPage.HasNavigationBar="True">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <RefreshView
+                Margin="{x:OnPlatform UWP=10,
+                                      iOS=30,
+                                      Android=10}"
+                x:DataType="local:FavoritesViewModel"
+                Command="{Binding LoadItemsCommand}"
+                IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+
+                <CollectionView
+                    x:Name="ItemsListView"
+                    ItemsSource="{Binding Stablishments}"
+                    SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <StackLayout Padding="10,20,10,0" x:DataType="model:Stablishment">
+                                <Label
+                                    x:Name="StablishID"
+                                    x:FieldModifier="prueba"
+                                    AutomationId="prueba"
+                                    IsVisible="False"
+                                    Text="{Binding Id}" />
+                                <Frame Padding="0" CornerRadius="30">
+                                    <StackLayout>
+                                        <Image
+                                            Aspect="AspectFill"
+                                            HorizontalOptions="FillAndExpand"
+                                            Source="{Binding ProfileImage.Source}"
+                                            VerticalOptions="CenterAndExpand" />
+                                    </StackLayout>
+                                </Frame>
+
+                                <Grid x:Name="header">
+                                    <Label
+                                        FontFamily="GothamBold"
+                                        FontSize="20"
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        Text="{Binding Name}" />
+                                    <ImageButton
+                                        Margin="0,0,50,0"
+                                        BackgroundColor="Transparent"
+                                        HeightRequest="30"
+                                        HorizontalOptions="End"
+                                        Source="share.png"
+                                        WidthRequest="30" />
+                                    <ImageButton
+                                        x:Name="FavoriteButton"
+                                        Margin="0,0,10,0"
+                                        x:FieldModifier="public"
+                                        BackgroundColor="Transparent"
+                                        HeightRequest="30"
+                                        HorizontalOptions="End"
+                                        Source="favoriteEnabled.png"
+                                        WidthRequest="30" />
+                                </Grid>
+
+                                <Label
+                                    FontFamily="Gotham"
+                                    FontSize="15"
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    Text="{Binding Description}"
+                                    TextColor="Black" />
+                                <Frame
+                                    Margin="0"
+                                    Padding="0"
+                                    Background="transparent"
+                                    HasShadow="False"
+                                    IsClippedToBounds="true">
+
+                                    <FlexLayout
+                                        Margin="0"
+                                        Padding="0"
+                                        Background="transparent">
+                                        <Button
+                                            Margin="0"
+                                            Padding="20,0,20,0"
+                                            BackgroundColor="gray"
+                                            CornerRadius="15"
+                                            FontAttributes="Bold"
+                                            FontSize="10"
+                                            HeightRequest="25"
+                                            HorizontalOptions="Start"
+                                            Text="Heavy Metal"
+                                            TextColor="Black"
+                                            TextTransform="Uppercase"
+                                            VerticalOptions="Center" />
+                                        <Button
+                                            Margin="0"
+                                            Padding="20,0,20,0"
+                                            BackgroundColor="gray"
+                                            CornerRadius="15"
+                                            FontAttributes="Bold"
+                                            FontSize="10"
+                                            HeightRequest="25"
+                                            HorizontalOptions="Start"
+                                            Text="Pop"
+                                            TextColor="Black"
+                                            TextTransform="Uppercase"
+                                            VerticalOptions="Center" />
+                                    </FlexLayout>
+                                </Frame>
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:FavoritesViewModel}}, Path=ItemTapped}"
+                                        CommandParameter="{Binding .}"
+                                        NumberOfTapsRequired="1" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

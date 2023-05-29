@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Rave.Views.ProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Rave.Controls;assembly=Rave"
+    xmlns:local="clr-namespace:Rave.ViewModels"
+    xmlns:model="clr-namespace:Rave.Models"
+    xmlns:sync="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:vm="clr-namespace:Rave.ViewModels"
+    Background="white"
+    FlowDirection="LeftToRight"
+    Shell.NavBarIsVisible="True">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">white</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <!--    -->
+    <ContentPage.Content>
+        <StackLayout x:DataType="local:ProfileViewModel" FlowDirection="LeftToRight">
+            <ScrollView x:DataType="local:ProfileViewModel">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+
+                        <Grid Margin="0" Padding="0">
+                            <Label
+                                x:Name="userId"
+                                IsVisible="False"
+                                Text="{Binding User.Id}" />
+                            <!--  Foto de perfil  -->
+                            <Frame
+                                x:Name="circleFrame"
+                                Margin="20"
+                                Padding="0"
+                                BackgroundColor="Black"
+                                CornerRadius="200"
+                                HasShadow="False"
+                                HeightRequest="100"
+                                HorizontalOptions="Start"
+                                IsClippedToBounds="true"
+                                VerticalOptions="Center"
+                                WidthRequest="100">
+                                <Image x:Name="profileImage" Source="{Binding User.ProfileImage.Source}" />
+                            </Frame>
+                            <ImageButton
+                                Margin="110,50,0,0"
+                                Clicked="ImageButton_Clicked"
+                                HorizontalOptions="Start"
+                                Source="editIcon.png"
+                                VerticalOptions="Center"
+                                WidthRequest="20" />
+                            <Label
+                                x:Name="Usuario"
+                                Margin="130,0,0,0"
+                                FontAttributes="Bold"
+                                FontSize="30"
+                                HorizontalOptions="Start"
+                                Text="{Binding User.UserName}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+                            
+                        </Grid>
+                        <Line
+                            Margin="0"
+                            BackgroundColor="black"
+                            HeightRequest="1" />
+                    </StackLayout>
+                    <ScrollView Grid.Row="1">
+
+                        <!--  Seccion Tus Raves  -->
+                        <StackLayout Padding="20,24,20,24" HorizontalOptions="Center">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="71" />
+                                </Grid.ColumnDefinitions>
+
+
+                                <sync:SfButton
+                                    x:Name="userinfo"
+                                    Grid.Column="0"
+                                    Margin="0"
+                                    Padding="0"
+                                    BackgroundColor="Silver"
+                                    BorderThickness="0"
+                                    Clicked="userinfo_Clicked"
+                                    CornerRadius="10"
+                                    FontSize="20"
+                                    HeightRequest="10"
+                                    Text="PERFIL"
+                                    TextColor="Black" />
+
+                                <sync:SfButton
+                                    x:Name="yourraves"
+                                    Grid.Column="1"
+                                    Margin="0"
+                                    Padding="0"
+                                    BackgroundColor="Silver"
+                                    BorderThickness="0"
+                                    Clicked="yourRaves_Clicked"
+                                    CornerRadius="10"
+                                    FontSize="20"
+                                    HeightRequest="10"
+                                    Text="TUS RAVES"
+                                    TextColor="Black" />
+                                <sync:SfButton
+                                    x:Name="logout"
+                                    Grid.Column="2"
+                                    Margin="0"
+                                    Padding="0"
+                                    BackgroundColor="Silver"
+                                    BorderThickness="0"
+                                    Clicked="logout_Clicked"
+                                    CornerRadius="10"
+                                    FontSize="20"
+                                    HeightRequest="10"
+                                    Text="SALIR"
+                                    TextColor="Black"
+                                    WidthRequest="30" />
+                            </Grid>
+                            <Frame
+                                x:Name="tabFrame"
+                                Margin="0"
+                                Padding="0"
+                                BackgroundColor="Transparent" />
+                        </StackLayout>
+                    </ScrollView>
+                </Grid>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

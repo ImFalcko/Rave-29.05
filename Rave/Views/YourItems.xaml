@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Rave.Views.YourItems"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Rave.Controls"
+    xmlns:local="clr-namespace:Rave.ViewModels"
+    xmlns:model="clr-namespace:Rave.Models"
+    xmlns:sync="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
+    FlowDirection="LeftToRight"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentView.Content>
+        <StackLayout>
+            <RefreshView
+                Margin="{x:OnPlatform UWP='10,0,10,0',
+                                      iOS=30,
+                                      Android=10}"
+                x:DataType="local:YourItemsViewModel"
+                Command="{Binding LoadItemsCommand}"
+                IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+
+                <CollectionView
+                    x:Name="ItemsListView"
+                    Margin="0"
+                    ItemsSource="{Binding Raves}"
+                    VerticalOptions="Start">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+
+                        <DataTemplate>
+                            <StackLayout
+                                x:Name="{Binding Id}"
+                                Margin="0"
+                                Padding="5"
+                                x:DataType="model:Raves"
+                                WidthRequest="200">
+                                <Label
+                                    x:Name="RaveID"
+                                    x:FieldModifier="prueba"
+                                    AutomationId="prueba"
+                                    IsVisible="False"
+                                    Text="{Binding Id}" />
+                                <Frame
+                                    Margin="0"
+                                    Padding="0"
+                                    CornerRadius="20"
+                                    HeightRequest="160"
+                                    WidthRequest="200">
+                                    <StackLayout>
+                                        <Frame
+                                            Margin="0"
+                                            Padding="0"
+                                            BackgroundColor="Transparent"
+                                            HeightRequest="200">
+                                            <Image
+                                                Margin="0"
+                                                Aspect="AspectFill"
+                                                Background="Transparent"
+                                                Source="{Binding Image.Source}" />
+                                        </Frame>
+                                    </StackLayout>
+                                </Frame>
+
+                                <Grid x:Name="header">
+                                    <Label
+                                        Margin="0"
+                                        FontFamily="GothamBold"
+                                        FontSize="15"
+                                        HorizontalOptions="Center"
+                                        LineBreakMode="WordWrap"
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        Text="{Binding Name}" />
+
+                                </Grid>
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:YourItemsViewModel}}, Path=ItemTapped}"
+                                        CommandParameter="{Binding .}"
+                                        NumberOfTapsRequired="1" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </RefreshView>
+
+        </StackLayout>
+
+    </ContentView.Content>
+</ContentView>

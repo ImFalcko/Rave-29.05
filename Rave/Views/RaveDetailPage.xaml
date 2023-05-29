@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Rave.Views.RaveDetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Rave.Controls"
+    xmlns:essentials="clr-namespace:Xamarin.Essentials;assembly=Xamarin.Essentials"
+    xmlns:local="clr-namespace:Rave.ViewModels"
+    xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+    xmlns:model="clr-namespace:Rave.Models"
+    Background="White"
+    FlowDirection="LeftToRight"
+    HeightRequest="500"
+    WidthRequest="200">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                Padding="0"
+                x:DataType="local:RaveDetailViewModel"
+                Spacing="20">
+                <Frame
+                    Margin="0"
+                    Padding="0"
+                    CornerRadius="0">
+                    <Image
+                        Aspect="AspectFit"
+                        HorizontalOptions="Center"
+                        Source="{Binding ProfileImageSource}" />
+                </Frame>
+                <StackLayout Padding="10">
+                    <Label
+                        FontSize="50"
+                        Text="{Binding Name}"
+                        TextColor="Black" />
+                    <Label
+                        FontSize="20"
+                        LineHeight="1.2"
+                        Text="{Binding Description}"
+                        TextColor="Black" />
+
+                    <Frame Content="{Binding map}" HeightRequest="500" />
+                    <Label
+                        FontSize="50"
+                        Text="FECHA "
+                        TextColor="{StaticResource Primary}" />
+                    <Label FontSize="40" Text="{Binding StartDate.Date}" />
+                    <Label
+                        FontSize="50"
+                        Text="HORA APERTURA "
+                        TextColor="{StaticResource Primary}" />
+                    <Label FontSize="40" Text="{Binding StartTime}" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Rave.Views.NewItemPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:comboBox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+    xmlns:controls="clr-namespace:Rave.Controls"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:Rave.ViewModels"
+    xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+    xmlns:model="clr-namespace:Rave.Models"
+    xmlns:sync="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    Title="nueva rave"
+    ios:Page.UseSafeArea="true"
+    Background="white"
+    FlowDirection="LeftToRight"
+    Shell.PresentationMode="ModalAnimated">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="15" Spacing="3">
+                <Label
+                    FontSize="20"
+                    Text="Nombre"
+                    TextColor="black" />
+                <Frame
+                    Margin="0,0,0,10"
+                    Padding="0"
+                    BackgroundColor="{StaticResource Primary}"
+                    CornerRadius="5"
+                    HeightRequest="50">
+                    <Grid
+                        Margin="0"
+                        Padding="-11"
+                        HeightRequest="50">
+                        <Entry
+                            x:Name="nameEntry"
+                            Margin="10,0,0,0"
+                            BackgroundColor="Transparent"
+                            Placeholder="Nombre"
+                            TextColor="WHITE"
+                            WidthRequest="100" />
+                    </Grid>
+                </Frame>
+                <Label
+                    FontSize="20"
+                    Text="Descripción"
+                    TextColor="black" />
+                <Frame
+                    Margin="0,0,0,20"
+                    Padding="0"
+                    BackgroundColor="{StaticResource Primary}"
+                    CornerRadius="5"
+                    MinimumHeightRequest="50">
+                    <Grid
+                        Margin="0"
+                        Padding="-21"
+                        MinimumHeightRequest="50">
+                        <Editor
+                            x:Name="descriptionEntry"
+                            Margin="20"
+                            AutoSize="TextChanges"
+                            BackgroundColor="Transparent"
+                            HeightRequest="150"
+                            Placeholder="Descripción"
+                            TextColor="WHITE"
+                            WidthRequest="100" />
+                    </Grid>
+                </Frame>
+                <Label
+                    FontSize="20"
+                    Text="Direccion"
+                    TextColor="black" />
+                <Frame
+                    Margin="0,0,0,20"
+                    Padding="0"
+                    BackgroundColor="{StaticResource Primary}"
+                    CornerRadius="5"
+                    MinimumHeightRequest="50">
+                    <Grid
+                        Margin="0"
+                        Padding="-21"
+                        MinimumHeightRequest="50">
+                        <Editor
+                            x:Name="addressEntry"
+                            Margin="20"
+                            AutoSize="TextChanges"
+                            BackgroundColor="Transparent"
+                            HeightRequest="60"
+                            MaxLength="200"
+                            Placeholder="Direccion"
+                            TextColor="WHITE"
+                            WidthRequest="100" />
+                    </Grid>
+                </Frame>
+                <Label
+                    FontSize="20"
+                    Text="Latitud"
+                    TextColor="black" />
+                <Frame
+                    Margin="0,0,0,20"
+                    Padding="0"
+                    BackgroundColor="{StaticResource Primary}"
+                    CornerRadius="5"
+                    MinimumHeightRequest="50">
+                    <Grid
+                        Margin="0"
+                        Padding="-21"
+                        MinimumHeightRequest="50">
+                        <Editor
+                            x:Name="latitudeEntry"
+                            Margin="20"
+                            AutoSize="TextChanges"
+                            BackgroundColor="Transparent"
+                            HeightRequest="60"
+                            MaxLength="200"
+                            Placeholder="Latitud"
+                            TextColor="WHITE"
+                            WidthRequest="100" />
+                    </Grid>
+                </Frame>
+                <Label
+                    FontSize="20"
+                    Text="Longitud"
+                    TextColor="black" />
+                <Frame
+                    Margin="0,0,0,20"
+                    Padding="0"
+                    BackgroundColor="{StaticResource Primary}"
+                    CornerRadius="5"
+                    MinimumHeightRequest="50">
+                    <Grid
+                        Margin="0"
+                        Padding="-21"
+                        MinimumHeightRequest="50">
+                        <Editor
+                            x:Name="longitudeEntry"
+                            Margin="20"
+                            AutoSize="TextChanges"
+                            BackgroundColor="Transparent"
+                            HeightRequest="60"
+                            MaxLength="200"
+                            Placeholder="Longitud"
+                            TextColor="WHITE"
+                            WidthRequest="100" />
+                    </Grid>
+                </Frame>
+                <sync:SfButton
+                    x:Name="UbicationButton"
+                    Grid.Column="0"
+                    Margin="0"
+                    Padding="0"
+                    BackgroundColor="{StaticResource Primary}"
+                    BorderThickness="0"
+                    Clicked="UbicationButton_Clicked"
+                    CornerRadius="5"
+                    FontSize="20"
+                    HorizontalOptions="FillAndExpand"
+                    Text="ESTABLECER UBICACION"
+                    TextColor="white" />
+                <maps:Map x:Name="newItemMap" HeightRequest="300" />
+                <Label
+                    FontSize="20"
+                    Text="Fecha de inicio"
+                    TextColor="black" />
+                <DatePicker
+                    x:Name="DatePicker"
+                    Margin="0,0,0,20"
+                    BackgroundColor="{StaticResource Primary}"
+                    FontSize="20"
+                    HorizontalOptions="StartAndExpand"
+                    WidthRequest="800" />
+
+                <Label
+                    FontSize="20"
+                    Text="Apertura"
+                    TextColor="black" />
+                <TimePicker
+                    x:Name="TimePicker"
+                    Margin="0,0,0,20"
+                    BackgroundColor="{StaticResource Primary}"
+                    FontSize="20"
+                    HorizontalOptions="StartAndExpand"
+                    WidthRequest="800" />
+
+                <Label FontSize="20" Text="Imagen de presentacion" />
+                <ImageButton
+                    x:Name="ImageSelector"
+                    Margin="0,0,0,20"
+                    Clicked="ImageButton_Clicked"
+                    Source="default_img.png" />
+
+                <Label FontSize="20" Text="Categorias musicales" />
+                <Frame
+                    Margin="0,0,0,20"
+                    Padding="0"
+                    BackgroundColor="Transparent">
+                    <controls:CategoriesPicker x:Name="CategoriesPicker" />
+                </Frame>
+
+                <StackLayout Orientation="Horizontal">
+                    <sync:SfButton
+                        x:Name="CreateButton"
+                        Grid.Column="0"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="{StaticResource Primary}"
+                        BorderThickness="0"
+                        Clicked="CreateButton_Clicked"
+                        CornerRadius="5"
+                        FontSize="20"
+                        HorizontalOptions="FillAndExpand"
+                        Text="CREAR"
+                        TextColor="white" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

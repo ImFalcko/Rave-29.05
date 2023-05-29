@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="Rave.Views.UserInfo"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:sync="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
+    <ContentView.Content>
+        <StackLayout>
+            <Label
+                x:Name="userId"
+                IsVisible="false"
+                Text="{Binding User.Id}" />
+            <!--  EMAIL  -->
+            <Label
+                Margin="10,0,0,0"
+                FontAttributes="Bold"
+                FontSize="25"
+                Text="Email"
+                TextColor="Gray" />
+
+            <Frame
+                Margin="0"
+                Padding="0"
+                BackgroundColor="LightGray"
+                CornerRadius="25"
+                HeightRequest="50">
+                <Grid
+                    Margin="0"
+                    Padding="-11"
+                    HeightRequest="50">
+                    <Entry
+                        x:Name="emailEntry"
+                        Margin="10,0,0,0"
+                        x:FieldModifier="1"
+                        BackgroundColor="Transparent"
+                        HorizontalTextAlignment="Start"
+                        IsEnabled="False"
+                        Placeholder="{Binding User.Email}"
+                        TextColor="black" />
+                    <ImageButton
+                        x:Name="editBton1"
+                        Margin="20"
+                        AutomationId="email"
+                        BackgroundColor="Transparent"
+                        Clicked="EditButton_Cliked"
+                        HorizontalOptions="End"
+                        IsVisible="True"
+                        Source="editIcon.png"
+                        VerticalOptions="Center"
+                        WidthRequest="20" />
+                    <ImageButton
+                        x:Name="acceptBton1"
+                        Margin="5,5,20,5"
+                        AutomationId="acceptEmail"
+                        BackgroundColor="Transparent"
+                        Clicked="AcceptButton_Cliked"
+                        HorizontalOptions="End"
+                        IsVisible="False"
+                        Source="acceptIcon.png"
+                        VerticalOptions="Center"
+                        WidthRequest="30" />
+                    <ImageButton
+                        x:Name="declineBtn1"
+                        Margin="5,5,60,5"
+                        AutomationId="declineEmail"
+                        BackgroundColor="Transparent"
+                        Clicked="DeclineButton_Cliked"
+                        HorizontalOptions="End"
+                        IsVisible="False"
+                        Source="declineIcon.png"
+                        VerticalOptions="Center"
+                        WidthRequest="30" />
+                </Grid>
+
+            </Frame>
+            <!--  TELEFONO  -->
+            <Label
+                Margin="10,0,0,0"
+                FontAttributes="Bold"
+                FontSize="25"
+                Text="Teléfono"
+                TextColor="Gray" />
+
+            <Frame
+                Margin="0"
+                Padding="0"
+                BackgroundColor="LightGray"
+                CornerRadius="25"
+                HeightRequest="50">
+                <Grid
+                    Margin="0"
+                    Padding="-11"
+                    HeightRequest="50">
+                    <Entry
+                        x:Name="phoneEntry"
+                        Margin="10,0,0,0"
+                        BackgroundColor="Transparent"
+                        IsEnabled="False"
+                        Placeholder="{Binding User.Phone}" />
+                    <ImageButton
+                        x:Name="editBton2"
+                        Margin="20"
+                        AutomationId="phone"
+                        BackgroundColor="Transparent"
+                        Clicked="EditButton_Cliked"
+                        HorizontalOptions="End"
+                        IsVisible="True"
+                        Source="editIcon.png"
+                        VerticalOptions="Center"
+                        WidthRequest="20" />
+                    <ImageButton
+                        x:Name="acceptBton2"
+                        Margin="5,5,20,5"
+                        AutomationId="acceptPhone"
+                        BackgroundColor="Transparent"
+                        Clicked="AcceptButton_Cliked"
+                        HorizontalOptions="End"
+                        IsVisible="False"
+                        Source="acceptIcon.png"
+                        VerticalOptions="Center"
+                        WidthRequest="30" />
+                    <ImageButton
+                        x:Name="declineBtn2"
+                        Margin="5,5,60,5"
+                        AutomationId="declinePhone"
+                        BackgroundColor="Transparent"
+                        Clicked="DeclineButton_Cliked"
+                        HorizontalOptions="End"
+                        IsVisible="False"
+                        Source="declineIcon.png"
+                        VerticalOptions="Center"
+                        WidthRequest="30" />
+                </Grid>
+            </Frame>
+            <!--  PAIS  -->
+            <Label
+                Margin="10,0,0,0"
+                FontAttributes="Bold"
+                FontSize="25"
+                Text="País"
+                TextColor="Gray" />
+
+            <Frame
+                Margin="0"
+                Padding="0"
+                BackgroundColor="LightGray"
+                CornerRadius="25"
+                HeightRequest="50">
+                <Grid
+                    Margin="0"
+                    Padding="-11"
+                    HeightRequest="50">
+                    <Entry
+                        x:Name="countryEntry"
+                        Margin="10,0,0,0"
+                        BackgroundColor="Transparent"
+                        IsEnabled="False"
+                        Placeholder="{Binding User.Country}"
+                        WidthRequest="100" />
+                    <ImageButton
+                        x:Name="editBton3"
+                        Margin="20"
+                        AutomationId="country"
+                        BackgroundColor="Transparent"
+                        Clicked="EditButton_Cliked"
+                        HorizontalOptions="End"
+                        IsVisible="True"
+                        Source="editIcon.png"
+                        VerticalOptions="Center"
+                        WidthRequest="20" />
+                    <ImageButton
+                        x:Name="acceptBton3"
+                        Margin="5,5,20,5"
+                        AutomationId="acceptCountry"
+                        BackgroundColor="Transparent"
+                        Clicked="AcceptButton_Cliked"
+                        HorizontalOptions="End"
+                        IsVisible="False"
+                        Source="acceptIcon.png"
+                        VerticalOptions="Center"
+                        WidthRequest="30" />
+                    <ImageButton
+                        x:Name="declineBtn3"
+                        Margin="5,5,60,5"
+                        AutomationId="declineCountry"
+                        BackgroundColor="Transparent"
+                        Clicked="DeclineButton_Cliked"
+                        HorizontalOptions="End"
+                        IsVisible="False"
+                        Source="declineIcon.png"
+                        VerticalOptions="Center"
+                        WidthRequest="30" />
+                </Grid>
+            </Frame>
+            <!--  PREFERENCIAS  -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="25"
+                Text="Preferencias"
+                TextColor="Gray" />
+            <AbsoluteLayout
+                Margin="0"
+                Padding="0"
+                BackgroundColor="Transparent"
+                HorizontalOptions="Start"
+                VerticalOptions="Start">
+
+                <CollectionView
+                    x:Name="ItemsListView"
+                    HeightRequest="100"
+                    ItemsSource="{Binding User.Preferences}"
+                    SelectionMode="None">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout
+                            Orientation="Vertical"
+                            Span="7"
+                            VerticalItemSpacing="0" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <sync:SfButton
+                                Padding="0"
+                                BackgroundColor="gray"
+                                CornerRadius="20"
+                                FontAttributes="Bold"
+                                FontSize="10"
+                                HeightRequest="44"
+                                HorizontalOptions="Start"
+                                Text="{Binding .}"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </AbsoluteLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

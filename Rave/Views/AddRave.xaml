@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Rave.Views.AddRave"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Background="{StaticResource Primary}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">white</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <!--    -->
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+            <Image
+                Grid.Row="0"
+                HorizontalOptions="CenterAndExpand"
+                Source="rave.png"
+                VerticalOptions="CenterAndExpand" />
+            <Frame
+                Grid.Row="1"
+                Margin="20,30"
+                BackgroundColor="White"
+                BorderColor="{StaticResource Primary}"
+                CornerRadius="50"
+                HasShadow="True">
+                <Grid
+                    Padding="20"
+                    HorizontalOptions="FillAndExpand"
+                    RowSpacing="20"
+                    VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Bienvenido"
+                        TextColor="Black" />
+                    <Label
+                        Grid.Row="1"
+                        Margin="0,-15,0,0"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Registrate"
+                        TextColor="Black" />
+                    <Entry
+                        Grid.Row="2"
+                        Margin="0,20,0,0"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Nombre de usuario"
+                        PlaceholderColor="Gray"
+                        TextColor="Black"
+                        VerticalOptions="FillAndExpand" />
+                    <Entry
+                        Grid.Row="3"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsPassword="True"
+                        Placeholder="Contraseña"
+                        PlaceholderColor="Gray"
+                        TextColor="Black"
+                        VerticalOptions="FillAndExpand" />
+                    <Entry
+                        Grid.Row="4"
+                        Margin="0,0,0,0"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Email"
+                        PlaceholderColor="Gray"
+                        TextColor="Black"
+                        VerticalOptions="FillAndExpand" />
+                    <Entry
+                        Grid.Row="5"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsPassword="True"
+                        Placeholder="Pais"
+                        PlaceholderColor="Gray"
+                        TextColor="Black"
+                        VerticalOptions="FillAndExpand" />
+                    <Entry
+                        Grid.Row="6"
+                        BackgroundColor="White"
+                        HorizontalOptions="FillAndExpand"
+                        IsPassword="True"
+                        Placeholder="Preferencias"
+                        PlaceholderColor="Gray"
+                        TextColor="Black"
+                        VerticalOptions="FillAndExpand" />
+                    <Button
+                        Grid.Row="7"
+                        BackgroundColor="{StaticResource Primary}"
+                        Clicked="RegisterButton_Clicked"
+                        CornerRadius="20"
+                        HeightRequest="40"
+                        Text="Registrar" />
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

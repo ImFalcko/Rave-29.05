@@ -1,0 +1,125 @@
+﻿<ContentPage
+    x:Class="Rave.Views.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#480856"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+            <Image
+                Grid.Row="0"
+                Margin="0,20,0,20"
+                Aspect="AspectFit"
+                HeightRequest="150"
+                Source="rave.png"
+                WidthRequest="80" />
+            <Frame
+                Grid.Row="1"
+                Margin="20,30"
+                BackgroundColor="White"
+                CornerRadius="50"
+                HasShadow="True">
+                <Grid
+                    Padding="20"
+                    HorizontalOptions="FillAndExpand"
+                    RowSpacing="20"
+                    VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Bienvenido"
+                        TextColor="Black" />
+                    <Label
+                        Grid.Row="1"
+                        Margin="0,-15,0,0"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Inicia sesion"
+                        TextColor="Black" />
+                    <Frame
+                        Grid.Row="2"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="gray"
+                        CornerRadius="25">
+                        <Grid
+                            Margin="-11,-1,-1,-1"
+                            Padding="0"
+                            HeightRequest="50">
+                            <Entry
+                                x:Name="usernameEntry"
+                                Margin="10,0,0,0"
+                                x:FieldModifier="1"
+                                BackgroundColor="Transparent"
+                                HorizontalTextAlignment="Start"
+                                Placeholder="Usuario"
+                                TextColor="black" />
+                        </Grid>
+                    </Frame>
+
+                    <Frame
+                        Grid.Row="3"
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="gray"
+                        CornerRadius="25">
+                        <Grid
+                            Margin="-11,-1,-1,-1"
+                            Padding="0"
+                            HeightRequest="50">
+                            <Entry
+                                x:Name="passwordEntry"
+                                Margin="10,0,0,0"
+                                x:FieldModifier="1"
+                                BackgroundColor="Transparent"
+                                HorizontalTextAlignment="Start"
+                                IsPassword="True"
+                                Placeholder="Contraseña"
+                                TextColor="black" />
+                        </Grid>
+                    </Frame>
+                    <Button
+                        Grid.Row="4"
+                        BackgroundColor="{StaticResource Primary}"
+                        Clicked="Button_Clicked"
+                        CornerRadius="20"
+                        HeightRequest="40"
+                        Text="Iniciar Sesión" />
+                    <Button
+                        Grid.Row="5"
+                        Margin="0"
+                        Padding="0"
+                        Background="transparent"
+                        Clicked="registerButton_Clicked"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="No tienes cuenta? Registrate aquí."
+                        TextColor="Black"
+                        TextTransform="None" />
+
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
